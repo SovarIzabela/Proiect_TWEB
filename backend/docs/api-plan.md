@@ -42,14 +42,22 @@ Raspuns 200 ok
 
 erori posibile:
     400 Bad request (lipsa campuri)
+<<<<<<< HEAD
     401-Unothorize  Conflict -email sau parola gresita
+=======
+    401-Unaothorized  
+>>>>>>> 2ab614c91472f26f0a37aa20c5fa85c7add01d8c
     500 Internal Server Error - eroare server
 
 2. Playlist
 Necesita autentificare
 Header Obligatoriu : Authorization: Bearer <token>
 2.1 Listare playlisturi user curent -> returneaza playlisturile asociate userului (din token)
+<<<<<<< HEAD
     GET/api/playlist
+=======
+    GET/api/playlists
+>>>>>>> 2ab614c91472f26f0a37aa20c5fa85c7add01d8c
 Raspuns 200 OK
 [
   {
@@ -88,7 +96,11 @@ Erori posibile:
 
 2.3 Stregere playlist - sterge playlistul cu id-ul dat daca apartine userului curent
 
+<<<<<<< HEAD
 DELETE /api/playlist/:id
+=======
+DELETE /api/playlists/:id
+>>>>>>> 2ab614c91472f26f0a37aa20c5fa85c7add01d8c
 id - id numeric sau UUID al playlistuui
 
 Raspuns 200 -> OK
@@ -136,6 +148,10 @@ Erori posibile:
 GET /api/videos/:playlistId
 Path params :playlistId – ID-ul playlist-ului in care se adauga video
 Raspuns 200 ok
+<<<<<<< HEAD
+=======
+[
+>>>>>>> 2ab614c91472f26f0a37aa20c5fa85c7add01d8c
 {
   "id": 100,
  "youtubeId": "jkkvjkdl",
@@ -147,7 +163,11 @@ Raspuns 200 ok
  "youtubeId": "jkkvjkdl",
   "title": "Proiect TWEB",
   "addedAt": "2025-11-29"
+<<<<<<< HEAD
 }
+=======
+}]
+>>>>>>> 2ab614c91472f26f0a37aa20c5fa85c7add01d8c
 
 Erori posibile:
 401 Unauthorized
@@ -158,7 +178,11 @@ Erori posibile:
 
 3.3 Stergere video din playlist - sterge video favorit dupa Id ul intern al aplocatiei
 DELETE /api/videos/:id
+<<<<<<< HEAD
 Path params :playlistId – ID-ul intern al inregistrarii video
+=======
+Path params :id – ID-ul intern al inregistrarii video
+>>>>>>> 2ab614c91472f26f0a37aa20c5fa85c7add01d8c
 
 Raspuns 200 OK
 {

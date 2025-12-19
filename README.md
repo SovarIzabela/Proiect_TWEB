@@ -27,7 +27,7 @@ Back-end: va expune un set de end point-uri REST:
 Autentificare :
      POST/api/auth/register ; POS/api/auth/login
 Playlist-uri:
-    GET /api/playlist; POST /api/playlist; DELETE /api/playlist/:id 
+    GET /api/playlists; POST /api/playlists; DELETE /api/playlists/:id 
 Video favorite:
     POST / api/video/:playlistID ; GET / api/videos/:playlistID; DELETE /api/videos/:id
 
