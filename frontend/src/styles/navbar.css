@@ -1,0 +1,20 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-bottom: 1px solid #334155;
+}
+
+.navbar__title {
+  font-weight: 700;
+}
+
+.navbar a {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: var(--primary);
+}

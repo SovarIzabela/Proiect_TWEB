@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+}

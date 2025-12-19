@@ -1,0 +1,14 @@
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --primary: #6366f1;
+  --danger: #ef4444;
+
+  --radius: 12px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+}
