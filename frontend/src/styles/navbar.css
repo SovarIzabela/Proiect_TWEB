@@ -18,3 +18,18 @@
 .navbar a:hover {
   color: var(--primary);
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo__icon {
+  font-size: 1.4rem;
+}
+
+.logo__text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}

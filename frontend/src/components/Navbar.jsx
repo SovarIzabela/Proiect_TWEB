@@ -1,14 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    //userul se dconecteaza
+    logout();
+    //redirectionare catre pagina de login
+    navigate("/login");
+  }
+
   return (
-    <nav style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-      <span style={{ fontWeight: "bold", marginRight: "1rem" }}>
-        Playlist Manager
-      </span>
-      <Link to="/" style={{ marginRight: "1rem" }}>Home</Link>
-      <Link to="/playlists" style={{ marginRight: "1rem" }}>Playlists</Link>
-      <Link to="/search">Search</Link>
-    </nav>
+    <header className="navbar">
+      <div className="navbar__inner">
+
+           <Logo />
+
+          <nav className="navlinks">
+                <Link className="navlink" to="/">Home</Link>
+                <Link className="navlink" to="/playlists">Playlists</Link>
+                <Link className="navlink" to="/search">Search</Link>
+              <button className="btn btn-danger" onClick={handleLogout}>  
+                Logout
+                </button>
+          </nav>
+      </div>
+    </header>
   );
 }
