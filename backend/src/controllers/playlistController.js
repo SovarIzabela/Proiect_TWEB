@@ -16,6 +16,7 @@ async function getPlaylists(req, res) {
       
         return{//returnam un obiect nou in care adaugam si nr de Vid
           id:playlist.id,
+          name:playlist.name,
           descriere:playlist.descriere,
           createdAt:playlist.createdAt,
           userId:playlist.userId,

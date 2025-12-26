@@ -9,12 +9,15 @@ import "./styles/ui.css";
 import "./styles/forms.css";
 import "./styles/buttons.css";
 import "./styles/navbar.css";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

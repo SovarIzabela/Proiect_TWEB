@@ -16,7 +16,7 @@ export default function Home() {
             Vezi Playlisturile
             </Link>
 
-           <Link to ="/search" className="btn btn-secondary">
+           <Link to ="/search" className="btn btn-primary">
              Adauga Muzica
             </Link>
 
