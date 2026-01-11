@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+ 
 
 export const AuthContext = createContext(null);//spatiu global pentru autentificare. Initial este null pentru ca utilizatorul nu este autentificat.
 
@@ -24,4 +25,11 @@ export function AuthProvider({ children }) {//componentei AuthProvider i se trec
       {children}
     </AuthContext.Provider>
   );
+}
+
+//hook personalizat pentru a accesa contextul de autentificare.
+export function useAuth() {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
+  return ctx;
 }

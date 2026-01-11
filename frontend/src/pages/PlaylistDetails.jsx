@@ -1,14 +1,15 @@
 import {  useEffect, useMemo, useState } from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {useAuth} from "../context/useAuth.js";
+import {useAuth} from "../context/AuthContext.jsx";
 import{apiAuthFetch} from "../services/apiAuthFetch.js";
 import "../styles/playlistDetails.css"
+import "../styles/forms.css"
 
 
 export default function PlaylistDetails() {//pagina pentru detaliile unui playlist.
   const { id} = useParams();//ia id din parametrii url-ului. ex: /playlists/123 -> id=123
-  const playlistId = useMemo(() => id, [id]);//memoreaza id-ul playlist-ului pentru a evita recalcularile inutile.
-  const { token } = useAuth();//ia token-ul de autentificare din context.
+  const playlistId = useMemo(() => Number(id), [id]);//memoreaza id-ul playlist-ului pentru a evita recalcularile inutile.
+  const { token, logout } = useAuth();//ia token-ul de autentificare din context.
   const navigate = useNavigate();//hook pentru navigare ex: navigate("/home")
   const[videos, setVideos] = useState([]);//starea pentru videoclipurile din playlist.
   //state pentru formularul de add
@@ -36,7 +37,7 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
          if(!Number.isFinite(playlistId)){
           throw new Error ("Invalid playlist id");
          }
-          const data = await apiAuthFetch('/videos/${playlistId}' , {//apelez backend GET
+          const data = await apiAuthFetch(`/videos/${playlistId}` , {//apelez backend GET
            token,
            logout,
            navigate,
@@ -44,7 +45,7 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
         
           setVideos (Array.isArray(data) ? data : []);//daca backend returneaza array il pun in state altfel lista goala
              }catch(err){
-        setError (err.message);
+        setError (err.message||"Failed to load videos");
       } finally {
         setIsLoading (false); 
      }
@@ -53,10 +54,8 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
     }    
     fetchVideos();
 
-    return () => {
-      controller.abort();//anuleaza fetch-ul la demontarea componentei.
-    };
-  }, [playlistId, token, navigate]);//se executa la montarea componentei si la schimbarea playlistId, token sau navigate.
+    
+  }, [playlistId, token, logout, navigate]);//se executa la montarea componentei si la schimbarea playlistId, token sau navigate.
 
   function startEdit(v){
     setError(null);
@@ -71,7 +70,8 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
    
     setEditingVideoId(null);
     setEditedTitle("");
-    setEditedUrl(""); }
+    setEditedUrl(""); 
+  }
 
     async function handleAdd(e){
     e.preventDefault();
@@ -79,7 +79,7 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
     setOk(null);
     try {
       setIsLoading(true);//pornesti loadingul
-      const created =await apiAuthFetch('/videos/${playlistId}', {
+      const created =await apiAuthFetch(`/videos/${playlistId}`, {
         token,
         logout,
         navigate,
@@ -103,7 +103,7 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
     try{
 
       setIsLoading (true);
-      const data = await apiAuthFetch('/videos/${videoId}', {
+      const data = await apiAuthFetch(`/videos/${videoId}`, {
         token,
         logout,
         navigate,
@@ -121,7 +121,7 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
     }finally{
       setIsLoading(false);
     }
-
+  }
     async function handleDelete(videoId){
       setError(null);
       setOk(null);
@@ -130,7 +130,7 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
 
       try{
         setIsLoading (true);
-        await apiAuthFetch('/videos/${videoId}', {
+        await apiAuthFetch(`/videos/${videoId}`, {
           token,
           logout,
           navigate,
@@ -183,7 +183,7 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="ex: Lofi beats for coding"
+              placeholder="ex: Disco Music"
               disabled={isLoading}
             />
           </div>
@@ -288,8 +288,8 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
                       <div>
                         <label>Title</label>
                         <input
-                          value={editTitle}
-                          onChange={(e) => setEditTitle(e.target.value)}
+                          value={editedTitle}
+                          onChange={(e) => setEditedTitle(e.target.value)}
                           disabled={isLoading}
                         />
                       </div>
@@ -297,8 +297,8 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
                       <div>
                         <label>URL</label>
                         <input
-                          value={editUrl}
-                          onChange={(e) => setEditUrl(e.target.value)}
+                          value={editedUrl}
+                          onChange={(e) => setEditedUrl(e.target.value)}
                           disabled={isLoading}
                         />
                       </div>
@@ -332,4 +332,4 @@ export default function PlaylistDetails() {//pagina pentru detaliile unui playli
     </div>
   );
 
-  }}
+  }

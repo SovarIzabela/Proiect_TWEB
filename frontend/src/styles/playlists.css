@@ -1,12 +1,87 @@
-.playlist-card {
-  background: var(--bg-card);
+
+.card {
+  background: #ffffff;
   border-radius: var(--radius);
   padding: var(--space-md);
-  border: 1px solid #334155;
+  border: 1px solid #e5e7eb;
 }
 
-.playlist-actions {
+
+.playlist-card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  border: 1px solid #e5e7eb;
+}
+
+
+.card h2,
+.playlist-card h3 {
+  color: #0f172a;
+}
+
+
+.playlist-card p,
+.playlist-card .helper {
+  color: #0f172a;
+  font-weight: 400;
+}
+
+
+.playlist-empty {
+  color: #0f172a;
+  text-align: center;
+  font-weight: 500;
+  padding: var(--space-md);
+}
+
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+
+
+.card .badge,
+.playlist-card .badge {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+
+.actions {
   margin-top: var(--space-sm);
   display: flex;
   gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+
+.actions .btn {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5f5;
+}
+
+.actions .btn:hover {
+  background: #eef2ff;
+}
+
+
+.actions .btn-primary {
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+}
+
+.actions .btn-primary:hover {
+  background: #4f46e5;
 }

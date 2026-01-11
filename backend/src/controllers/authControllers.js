@@ -20,9 +20,9 @@ function signToken(userId){
 async function createUser(req, res) {
     try{
 
-        const{email, password,passwordConfirm, picture} = req.body||{}
+        const{email, password,confirmPassword, picture} = req.body||{}
 
-        if(!email||!password||!passwordConfirm){
+        if(!email||!password||!confirmPassword){
             return res.status(400).json({
                 error:"Campurile Email, Password si Confirmare password sunt obligatorii!"
             });
@@ -39,7 +39,7 @@ async function createUser(req, res) {
         }
 
 
-          if(password!==passwordConfirm){
+          if(password!==confirmPassword){
             return res.status(400).json({ 
             error: "Parolele nu sunt identice! "})
 
@@ -96,7 +96,7 @@ async function loginUser(req, res){
         //verificam daca emailul si parola exista
         if(!email||!password){
             return res.status(400).json({
-            error:'Email-ul si parola sunt obligatorii'
+            error:'Email-ul sau parola incorecta!'
         });
         }
         //verificam daca userul si parola sunt corecte
