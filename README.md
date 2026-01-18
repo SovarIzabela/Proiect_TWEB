@@ -11,8 +11,9 @@ Aplicatia permite utilizatorilor sa:
 Aplicatia va avea:
 ->un back-end RESTful construit cu Node.js si Express,
 ->o baza date Prisma ORM si SQL lite,
-->interfata web (SPA) realizata cu React.js
-->integrarea directa cu Yout tube Search API
+->interfata web (SPA) realizata cu React.js(vite)
+->integrarea directa cu You Tube Search API
+->autentificare: JWT (token salvat in "Local Storage")
 
 Prin aceasta aplicatie voi urmari:
 ->implementarea unui serviciu REST
@@ -25,21 +26,27 @@ Prin aceasta aplicatie voi urmari:
 Arhitectura aplicatiei:
 Back-end: va expune un set de end point-uri REST:
 Autentificare :
-     POST/api/auth/register ; POS/api/auth/login
+    POST/api/auth/register ;
+    POS/api/auth/login
 Playlist-uri:
-    GET /api/playlists; POST /api/playlists; DELETE /api/playlists/:id 
+    GET /api/playlists; 
+    POST /api/playlists; 
+    DELETE /api/playlists/:id 
 Video favorite:
-    POST / api/video/:playlistID ; GET / api/videos/:playlistID; DELETE /api/videos/:id
+    POST / api/videos/:playlistID ; 
+    GET / api/videos/:playlistID;
+    PATCH /api/videos/:id 
+    DELETE /api/videos/:id
 
 Back-endul va verifica autentificarea si va atasa utilizatorului doar playlisturile si videoclipurile proprii.
 
-Front-end - ul va contine :
+Front-end contine :
  ->Login
  ->Register
  ->Lista playlist
  ->Cautare video Yt
- ->Vizualizare video favorite
- ->Player video integrat(iframe)
+ ->Vizualizare video favorite prin redirectionare catre You tube
+
 
 React va comunica cu back-end prin Fetch/Axios si va afisa raspunsurile sub forma de componente.
 
@@ -51,12 +58,39 @@ Baza de date va avea 3 entitati :
 
 
 Functionalitati dorite:
-Autentificare user: inregistrare cont nou, login, token JWT salvat in localStorage
-Integrare YT: userul cauta un termen-> aplicatia trimite cererea la YT API ->returneaza titlul si id video.
-Playlist-uri : listare playlist, creare playlist nou, stergere playlist
-Video favorite: adaugare video in playlist, stergere video din playlist, afisare video favorite, vizionare video direct in pagina
+->Autentificare user: inregistrare cont nou, login, token JWT salvat in localStorage
+
+->Integrare YT: userul cauta un termen-> aplicatia trimite cererea la YT API            (returneaza titlul si id video).
+
+->Playlist-uri : listare playlist, creare playlist nou, stergere playlist
+
+->Video favorite: adaugare video in playlist, stergere video din playlist, afisare video favorite, vizionare video direct in pagina
 
 
+# Rularea locala a proiectului
+
+1. Pornire backend
+
+cd backend
+npm install
+npx prisma migrate dev  #creaza baza de date
+npm run dev
+
+Backendul porneste pe  : http://localhost:3000
+
+
+2. Pornirea frontend
+
+cd frontend
+
+npm install
+
+npm run dev
+
+Aplicatia este disponibila la : http://localhost:5173
+
+
+Link YouTube nelistat : https://youtu.be/W5ovjfml6Mw
  
 
      
